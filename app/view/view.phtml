@@ -1,1 +1,5 @@
 <p><?= $post->getContent()?></p>
+<form method="post" action="<?= App::config('url') ?>Index/deletePost/<?= $post->getId() ?>">
+
+    <button type="submit">Delete</button>
+</form>

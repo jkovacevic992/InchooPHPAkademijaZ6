@@ -57,4 +57,8 @@ class Post
         $post = $statement->fetch();
         return new Post($post->id, $post->content);
     }
+
+
+
+
 }

@@ -25,6 +25,16 @@ class IndexController
             header('Location: ' . App::config('url'));
         }
     }
+    public function deletePost($id)
+    {
+
+        $connection = Db::connect();
+        $sql = 'delete from post where id = '. $id;
+        $stmt = $connection->prepare($sql);
+
+        $stmt->execute();
+        header('Location: ' . App::config('url'));
+    }
 
     private function validate($data)
     {
