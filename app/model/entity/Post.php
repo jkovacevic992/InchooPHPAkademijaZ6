@@ -3,8 +3,7 @@
 class Post
 {
     private $id;
-
-    private $content;
+        private $content;
 
     public function __get($name)
     {
@@ -33,6 +32,8 @@ class Post
     {
         $this->setId($id);
         $this->setContent($content);
+
+
     }
 
     public static function all()

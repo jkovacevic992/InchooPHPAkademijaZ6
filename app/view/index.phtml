@@ -10,6 +10,7 @@
 
 
     <?php
+    arsort($posts);
     foreach ($posts as $post):
         ?>
         <p><a href="<?php echo App::config('url') ?>Index/view/<?= $post->getId() ?>">
