@@ -1,29 +1,27 @@
 <?php
-define ('BP', __DIR__ . '/');
+
+define('BP', __DIR__ . '/');
 
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 
-
-$includePaths = implode(PATH_SEPARATOR, array(
+$includePaths = implode(PATH_SEPARATOR, [
     BP . 'app/model',
     BP . 'app/controller',
-));
-
+    BP . 'app/model/entity'
+]);
 
 set_include_path($includePaths);
-
-spl_autoload_register(function($class)
+spl_autoload_register(function ($class)
 {
-
-    $classPath = strtr($class, '\\', DIRECTORY_SEPARATOR) . '.php';
-    if ($file = stream_resolve_include_path($classPath)) {
+    $class = strtr($class, '\\', DIRECTORY_SEPARATOR) . '.php';
+    $file = stream_resolve_include_path($class);
+    if($file){
         include $file;
         return true;
     }
     return false;
 
 });
-
 
 App::start();

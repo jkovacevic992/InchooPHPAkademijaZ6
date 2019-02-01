@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: josip
- * Date: 30.01.19.
- * Time: 10:09
+ * User: ipa
+ * Date: 29.01.19.
+ * Time: 19:20
  */
 
 class View
@@ -17,14 +17,14 @@ class View
 
     public function render($name, $args = [])
     {
+
         ob_start();
         extract($args);
-        include BP . "app/view/$name.phtml";
+        include BP . "app/view/" . $name . ".phtml";
         $content = ob_get_clean();
 
-
-        if( $this->layout){
-        include BP . "app/view/{$this->layout}.phtml";
+        if($this->layout){
+            include BP . "app/view/{$this->layout}.phtml";
         }else{
             echo $content;
         }
