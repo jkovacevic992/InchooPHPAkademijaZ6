@@ -37,12 +37,12 @@ class IndexController
     {
         $data = $this->validate($_POST);
         $connection = Db::connect();
-        $sql = 'insert into comment (post,content) values ('.$id.',:content)';
+        $sql = 'insert into comment (postID,content) values ('.$id.',:content)';
 
         $stmt = $connection->prepare($sql);
         $stmt->bindValue('content', $data['content']);
         $stmt->execute();
-        header('Location: ' . App::config('url').'/Index/view/'.$id);
+        header('Location: ' . App::config('url').'Index/view/'.$id);
     }
     public function deletePost($id)
     {

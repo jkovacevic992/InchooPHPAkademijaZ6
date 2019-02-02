@@ -13,12 +13,10 @@ image varchar(200)
 create table comment(
   id int not null primary key auto_increment,
   content text,
-  post int
+  postID int,
+  foreign key (postID) references post(id) on delete cascade
 )engine=InnoDB;
-
-alter table comment add foreign key (post) references post(id);
-
 
 
 insert into post (content) values ('Evo danas pada kiša opet :('), ('Jedem jagode.');
-insert into comment (content,post) values ('Komentar na tvoju kišu',1);
+insert into comment (content,postID) values ('Komentar na tvoju kišu',1);
