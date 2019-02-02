@@ -20,9 +20,8 @@ class IndexController
         }else{
             $imagetmp= addslashes (file_get_contents($_FILES['myimage']['tmp_name']));
             $connection = Db::connect();
-            $time = date("Y-m-d H:i:s");
+            $time = date("Y.m.d H:i:s");
             $sql = 'insert into post (content, image, time) values (:content, :image, :time)';
-
             $stmt = $connection->prepare($sql);
             $stmt->bindValue('content', $data['content']);
             $stmt->bindValue('image', $imagetmp);
