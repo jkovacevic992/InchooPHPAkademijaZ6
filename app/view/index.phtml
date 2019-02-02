@@ -15,6 +15,7 @@
     foreach ($posts as $post):
         ?>
         <p><a href="<?php echo App::config('url') ?>Index/view/<?= $post->getId() ?>">
-            <?php echo $post->getContent(); ?>   </a></p>
-    
+
+                <?php echo $post->getContent(); ?>   </a></p>
+            <p><?php echo $post->getTime()?></p>
     <?php endforeach; ?>

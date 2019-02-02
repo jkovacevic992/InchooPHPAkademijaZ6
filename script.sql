@@ -4,8 +4,13 @@ use social_network;
 
 create table post(
 id int not null primary key auto_increment,
-content text
+content text,
+image longblob,
+time timestamp
 
 )engine=InnoDB;
+
+
+
 
 insert into post (content) values ('Evo danas pada kiša opet :('), ('Jedem jagode.');

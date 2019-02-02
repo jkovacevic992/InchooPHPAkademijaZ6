@@ -1,10 +1,18 @@
 <?php
 
+
+/**
+ * @method setId($id)
+ * @method setContent($content)
+ * @method setImage($image)
+ * @method setTime($time)
+ */
 class Post
 {
     private $id;
     private $content;
     private $image;
+    private $time;
 
     public function __get($name)
     {
@@ -29,11 +37,13 @@ class Post
     }
 
 
-    public function __construct($id, $content, $image=null)
+    public function __construct($id, $content, $time, $image=null)
     {
         $this->setId($id);
         $this->setContent($content);
         $this->setImage($image);
+        $this->setTime($time);
+
 
 
     }
@@ -45,8 +55,8 @@ class Post
         $statement = $db->prepare('select * from post');
         $statement->execute();
         foreach ($statement->fetchAll() as $post){
-            $list[] = new Post($post->id, $post->content, $post->image);
-        }
+            $list[] = new Post($post->id, $post->content, $post->time,$post->image);
+            }
         return $list;
     }
 
@@ -58,7 +68,7 @@ class Post
         $statement->bindValue('id', $id);
         $statement->execute();
         $post = $statement->fetch();
-        return new Post($post->id, $post->content, $post->image);
+        return new Post($post->id, $post->content, $post->time,$post->image);
     }
 
 
