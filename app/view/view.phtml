@@ -4,6 +4,7 @@
     <button type="submit">Delete</button>
 </form>
 
+
 <?php
 arsort($comments);
 
@@ -12,3 +13,13 @@ foreach ($comments as $comment):
     <p><?php echo $comment->getContent(); ?>   </p>
 
 <?php endforeach; ?>
+
+<form enctype="multipart/form-data" method="post" action="<?= App::config('url') ?>Index/newComment/<?= $post->getId() ?>">
+
+    <div class="form-group">
+        <label for="content">Anything you want to say?</label>
+        <input id="content" name="content" type="text">
+    </div>
+
+    <button type="submit">Comment</button>
+</form>

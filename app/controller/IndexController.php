@@ -33,6 +33,17 @@ class IndexController
 
         }
     }
+    public function newComment($id)
+    {
+        $data = $this->validate($_POST);
+        $connection = Db::connect();
+        $sql = 'insert into comment (post,content) values ('.$id.',:content)';
+
+        $stmt = $connection->prepare($sql);
+        $stmt->bindValue('content', $data['content']);
+        $stmt->execute();
+        header('Location: ' . App::config('url').'/Index/view/'.$id);
+    }
     public function deletePost($id)
     {
 
