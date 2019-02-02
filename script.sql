@@ -5,12 +5,20 @@ use social_network;
 create table post(
 id int not null primary key auto_increment,
 content text,
-image longblob,
-time timestamp
+time timestamp,
+image varchar(200)
 
 )engine=InnoDB;
 
+create table comment(
+  id int not null primary key auto_increment,
+  content text,
+  post int
+)engine=InnoDB;
+
+alter table comment add foreign key (post) references post(id);
 
 
 
 insert into post (content) values ('Evo danas pada kiša opet :('), ('Jedem jagode.');
+insert into comment (content,post) values ('Komentar na tvoju kišu',1);

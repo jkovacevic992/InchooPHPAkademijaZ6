@@ -3,3 +3,12 @@
 
     <button type="submit">Delete</button>
 </form>
+
+<?php
+arsort($comments);
+
+foreach ($comments as $comment):
+    ?>
+    <p><?php echo $comment->getContent(); ?>   </p>
+
+<?php endforeach; ?>
