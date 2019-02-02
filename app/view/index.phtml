@@ -1,8 +1,9 @@
-<form method="post" action="<?= App::config('url') ?>Index/newPost">
+<form enctype="multipart/form-data" method="post" action="<?= App::config('url') ?>Index/newPost">
 
     <div class="form-group">
         <label for="content">What's on your mind?</label>
         <input id="content" name="content" type="text">
+        <input type="file" name="myimage" id="fileToUpload">
     </div>
 
     <button type="submit">Save</button>
@@ -15,5 +16,5 @@
         ?>
         <p><a href="<?php echo App::config('url') ?>Index/view/<?= $post->getId() ?>">
             <?php echo $post->getContent(); ?>   </a></p>
-
+    
     <?php endforeach; ?>

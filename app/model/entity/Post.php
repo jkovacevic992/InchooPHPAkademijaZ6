@@ -3,7 +3,8 @@
 class Post
 {
     private $id;
-        private $content;
+    private $content;
+    private $image;
 
     public function __get($name)
     {
@@ -28,10 +29,11 @@ class Post
     }
 
 
-    public function __construct($id, $content)
+    public function __construct($id, $content, $image=null)
     {
         $this->setId($id);
         $this->setContent($content);
+        $this->setImage($image);
 
 
     }
@@ -43,7 +45,7 @@ class Post
         $statement = $db->prepare('select * from post');
         $statement->execute();
         foreach ($statement->fetchAll() as $post){
-            $list[] = new Post($post->id, $post->content);
+            $list[] = new Post($post->id, $post->content, $post->image);
         }
         return $list;
     }
@@ -56,7 +58,7 @@ class Post
         $statement->bindValue('id', $id);
         $statement->execute();
         $post = $statement->fetch();
-        return new Post($post->id, $post->content);
+        return new Post($post->id, $post->content, $post->image);
     }
 
 

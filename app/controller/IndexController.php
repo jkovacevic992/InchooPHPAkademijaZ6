@@ -14,15 +14,20 @@ class IndexController
     public function newPost()
     {
         $data = $this->validate($_POST);
+
         if($data === false) {
             header('Location: ' . App::config('url'));
         }else{
+            $imagetmp= addslashes (file_get_contents($_FILES['myimage']['tmp_name']));
             $connection = Db::connect();
-            $sql = 'insert into post (content) values (:content)';
+            $sql = 'insert into post (content, image) values (:content, :image)';
+
             $stmt = $connection->prepare($sql);
             $stmt->bindValue('content', $data['content']);
+            $stmt->bindValue('image', $imagetmp);
             $stmt->execute();
             header('Location: ' . App::config('url'));
+
         }
     }
     public function deletePost($id)
@@ -48,6 +53,7 @@ class IndexController
                 return false;
             }
         }
+
         return $data;
     }
 
