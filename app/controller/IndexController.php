@@ -16,7 +16,7 @@ class IndexController
         $data = $this->validate($_POST);
         $imageType = $_FILES["file"]["type"];
         $allowed = array("image/jpeg", "image/jpg");
-        if($data === false || !in_array($imageType, $allowed) ) {
+        if($data === false || (!in_array($imageType, $allowed) && is_uploaded_file($_FILES["file"]["tmp_name"]))) {
             header('Location: ' . App::config('url'));
         }else{
             $connection = Db::connect();
@@ -39,10 +39,10 @@ class IndexController
         $data = $this->validate($_POST);
         $connection = Db::connect();
         $sql = 'insert into comment (postID,content) values ('.$id.',:content)';
-
         $stmt = $connection->prepare($sql);
         $stmt->bindValue('content', $data['content']);
         $stmt->execute();
+
         header('Location: ' . App::config('url').'Index/view/'.$id);
     }
     public function deletePost($id)

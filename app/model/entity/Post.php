@@ -14,6 +14,7 @@ class Post
     private $image;
     private $time;
 
+
     public function __get($name)
     {
         return isset($this->$name) ? $this->$name : null;
@@ -43,6 +44,7 @@ class Post
         $this->setContent($content);
         $this->setImage($image);
         $this->setTime($time);
+
 
 
 

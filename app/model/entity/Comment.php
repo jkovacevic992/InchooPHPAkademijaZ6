@@ -10,7 +10,7 @@ class Comment
 {
     private $id;
     private $content;
-    private $post;
+    private $postID;
     public function __get($name)
     {
         return isset($this->$name) ? $this->$name : null;
