@@ -1,4 +1,11 @@
 <p><?= $post->getContent()?></p>
+<?php
+if($post->getImage()):
+    ?>
+    <img src="../../images/<?= $post->getImage(); ?>">
+
+<?php endif; ?>
+
 <form method="post" action="<?= App::config('url') ?>Index/deletePost/<?= $post->getId() ?>">
 
     <button type="submit">Delete</button>

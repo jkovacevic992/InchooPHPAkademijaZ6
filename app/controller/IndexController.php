@@ -48,7 +48,7 @@ class IndexController
     {
 
         $connection = Db::connect();
-        
+
         $sql = 'delete from post where id = '. $id;
 
         $stmt = $connection->prepare($sql);
