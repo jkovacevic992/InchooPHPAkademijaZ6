@@ -14,8 +14,9 @@ class IndexController
     public function newPost()
     {
         $data = $this->validate($_POST);
-
-        if($data === false) {
+        $imageType = $_FILES["file"]["type"];
+        $allowed = array("image/jpeg", "image/jpg");
+        if($data === false || !in_array($imageType, $allowed) ) {
             header('Location: ' . App::config('url'));
         }else{
             $connection = Db::connect();
