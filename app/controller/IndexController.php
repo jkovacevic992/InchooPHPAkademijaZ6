@@ -20,9 +20,9 @@ class IndexController
         }else{
             $connection = Db::connect();
             $time = date("Y.m.d H:i:s");
-            $imageName = $_FILES["file"]["name"];
+            $imageName = addslashes($_FILES["file"]["name"]);
             $imageTmp = $_FILES["file"]["tmp_name"];
-            move_uploaded_file($imageTmp,"/home/josip/www/mvc/images/". $imageName);
+            move_uploaded_file($imageTmp,BP."images/". $imageName);
             $sql = 'insert into post (content, time, image) values (:content, :time, :image)';
             $stmt = $connection->prepare($sql);
             $stmt->bindValue('image', $imageName);
@@ -48,7 +48,9 @@ class IndexController
     {
 
         $connection = Db::connect();
+        
         $sql = 'delete from post where id = '. $id;
+
         $stmt = $connection->prepare($sql);
 
         $stmt->execute();

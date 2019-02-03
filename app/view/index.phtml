@@ -10,6 +10,7 @@
 </form>
 
 
+
     <?php
     arsort($posts);
 
@@ -18,5 +19,9 @@
         <p><a href="<?php echo App::config('url') ?>Index/view/<?= $post->getId() ?>">
 
                 <?php echo $post->getContent(); ?>   </a></p>
+       <img src="../../images/<?= $post->getImage(); ?>">
+
+
+
             <p><?php echo date('d.m.Y H:i', strtotime($post->getTime()))?></p>
     <?php endforeach; ?>
