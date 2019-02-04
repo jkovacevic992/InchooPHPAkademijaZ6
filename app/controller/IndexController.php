@@ -20,7 +20,9 @@ class IndexController
             header('Location: ' . App::config('url'));
         } else {
             $connection = Db::connect();
+            date_default_timezone_set('Europe/Zagreb');
             $time = date("Y.m.d H:i:s");
+
             $imageName = $_FILES["file"]["name"];
             $imageTmp = $_FILES["file"]["tmp_name"];
             move_uploaded_file($imageTmp, BP . "images/" . $imageName);

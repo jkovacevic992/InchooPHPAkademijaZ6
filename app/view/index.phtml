@@ -28,6 +28,9 @@
         <p> Comments (<?php echo $post->countComments($post->getId()); ?>)</p>
 
 
-        <p><?php echo date('d.m.Y. H:i', strtotime($post->getTime())) ?></p>
+        <p><?php
+            $date = date_format(date_create($post->getTime()),'d.m.Y. H:i');
+
+            echo $date ?></p>
     <?php endforeach; ?>
 </div>
