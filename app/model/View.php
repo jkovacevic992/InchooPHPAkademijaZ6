@@ -23,9 +23,9 @@ class View
         include BP . "app/view/" . $name . ".phtml";
         $content = ob_get_clean();
 
-        if($this->layout){
+        if ($this->layout) {
             include BP . "app/view/{$this->layout}.phtml";
-        }else{
+        } else {
             echo $content;
         }
         return $this;

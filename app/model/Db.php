@@ -13,10 +13,10 @@ class Db extends PDO
 
     public function __construct($config)
     {
-        $dsn = 'mysql:host='. $config['host'] . ';dbname=' . $config['name']
+        $dsn = 'mysql:host=' . $config['host'] . ';dbname=' . $config['name']
             . ';charset=utf8';
 
-        parent::__construct($dsn,$config['user'],$config['password']);
+        parent::__construct($dsn, $config['user'], $config['password']);
 
         $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
@@ -29,7 +29,7 @@ class Db extends PDO
     public static function connect($name = 'josip')
     {
         $config = App::config('db');
-        if(!isset(self::$instance[$name])){
+        if (!isset(self::$instance[$name])) {
             self::$instance[$name] = new self($config);
         }
 
