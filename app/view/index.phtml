@@ -1,6 +1,6 @@
 <form enctype="multipart/form-data" method="post" action="<?= App::config('url') ?>Index/newPost">
 
-    <div class="form-group">
+    <div class="container">
         <label for="content">What's on your mind?</label>
         <input id="content" name="content" type="text">
         <input type="file" name="file" id="file">
@@ -10,23 +10,20 @@
 </form>
 
 
+<?php
+arsort($posts);
 
-    <?php
-    arsort($posts);
+foreach ($posts as $post):
+    ?>
+    <p><a href="<?php echo App::config('url') ?>Index/view/<?= $post->getId() ?>">
 
-    foreach ($posts as $post):
-        ?>
-        <p><a href="<?php echo App::config('url') ?>Index/view/<?= $post->getId() ?>">
+            <?php echo $post->getContent(); ?>   </a></p>
+    <?php if ($post->getImage()): ?>
+    <img src="../../images/<?= $post->getImage(); ?>">
 
-                <?php echo $post->getContent(); ?>   </a></p>
-        <?php if($post->getImage()):
-        ?>
-        <img src="../../images/<?= $post->getImage(); ?>">
-
-        <?php endif; ?>
-   <p> Comments (<?php echo $post->countComments($post->getId());?>)</p>
+<?php endif; ?>
+    <p> Comments (<?php echo $post->countComments($post->getId()); ?>)</p>
 
 
-
-            <p><?php echo date('d.m.Y. H:i', strtotime($post->getTime()))?></p>
-    <?php endforeach; ?>
+    <p><?php echo date('d.m.Y. H:i', strtotime($post->getTime())) ?></p>
+<?php endforeach; ?>

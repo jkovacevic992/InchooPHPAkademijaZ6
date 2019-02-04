@@ -23,10 +23,10 @@ foreach ($comments as $comment):
 
 <form enctype="multipart/form-data" method="post" action="<?= App::config('url') ?>Index/newComment/<?= $post->getId() ?>">
 
-    <div class="form-group">
-        <label for="content">Anything you want to say?</label>
+    <div class="container">
+        <label for="content">Anything you want to say?<br/></label>
         <input id="content" name="content" type="text">
     </div>
 
-    <button type="submit">Comment</button>
+    <button  type="submit">Comment</button>
 </form>

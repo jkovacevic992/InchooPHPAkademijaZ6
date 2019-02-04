@@ -64,7 +64,7 @@ class Post
 
     public static function find($id)
     {
-        $id = (int) $id;
+        $id = intval($id);
         $db = Db::connect();
         $statement = $db->prepare('select * from post where id = :id');
         $statement->bindValue('id', $id);
@@ -74,13 +74,13 @@ class Post
     }
     public static function countComments($id)
     {
-        $id = (int) $id;
+        $id = intval($id);
         $db = Db::connect();
         $statement = $db->prepare('select count(*) from comment where postID= :id');
         $statement->bindValue('id', $id);
         $statement->execute();
-        $number = get_object_vars($statement->fetch())['count(*)'][0];
-        return $number;
+
+        return get_object_vars($statement->fetch())['count(*)'][0];
     }
 
 
