@@ -1,16 +1,17 @@
-<p><?= $post->getContent()?></p>
+<div class="container">
+<h1><?= $post->getContent()?></h1>
 <?php
 if($post->getImage()):
     ?>
-    <img src="../../images/<?= $post->getImage(); ?>">
+    <img style="max-width: 600px" src="../../images/<?= $post->getImage(); ?>">
 
 <?php endif; ?>
 
 <form method="post" action="<?= App::config('url') ?>Index/deletePost/<?= $post->getId() ?>">
 
-    <button type="submit">Delete</button>
+    <button class="button-primary" type="submit">Delete Post</button>
 </form>
-
+<h3>Comments:<br/></h3>
 
 <?php
 arsort($comments);
@@ -23,10 +24,11 @@ foreach ($comments as $comment):
 
 <form enctype="multipart/form-data" method="post" action="<?= App::config('url') ?>Index/newComment/<?= $post->getId() ?>">
 
-    <div class="container">
+
         <label for="content">Anything you want to say?<br/></label>
         <input id="content" name="content" type="text">
-    </div>
 
-    <button  type="submit">Comment</button>
+
+    <button class="button-primary" type="submit">Comment</button>
 </form>
+</div>
