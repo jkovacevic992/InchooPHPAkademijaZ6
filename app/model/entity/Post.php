@@ -72,6 +72,16 @@ class Post
         $post = $statement->fetch();
         return new Post($post->id, $post->content, $post->time,$post->image);
     }
+    public static function countComments($id)
+    {
+        $id = (int) $id;
+        $db = Db::connect();
+        $statement = $db->prepare('select count(*) from comment where postID= :id');
+        $statement->bindValue('id', $id);
+        $statement->execute();
+        $number = get_object_vars($statement->fetch())['count(*)'][0];
+        return $number;
+    }
 
 
 

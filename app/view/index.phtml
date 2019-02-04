@@ -24,6 +24,7 @@
         <img src="../../images/<?= $post->getImage(); ?>">
 
         <?php endif; ?>
+   <p> Comments (<?php echo $post->countComments($post->getId());?>)</p>
 
 
 

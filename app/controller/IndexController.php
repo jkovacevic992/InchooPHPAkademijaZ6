@@ -36,6 +36,7 @@ class IndexController
     }
     public function newComment($id)
     {
+
         $data = $this->validate($_POST);
         $connection = Db::connect();
         $sql = 'insert into comment (postID,content) values ('.$id.',:content)';

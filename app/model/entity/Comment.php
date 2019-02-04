@@ -11,6 +11,7 @@ class Comment
     private $id;
     private $content;
     private $postID;
+
     public function __get($name)
     {
         return isset($this->$name) ? $this->$name : null;
