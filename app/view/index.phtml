@@ -22,7 +22,7 @@
 
                 <?php echo $post->getContent(); ?>   </a></h3>
         <?php if ($post->getImage()): ?>
-        <img style="max-width: 600px" src="../../images/<?= $post->getImage(); ?>">
+        <img style="max-width: 600px" src="<?="../../images/". $post->getImage(); ?>" alt="Image">
 
     <?php endif; ?>
         <p> Comments (<?php echo $post->countComments($post->getId()); ?>)</p>
